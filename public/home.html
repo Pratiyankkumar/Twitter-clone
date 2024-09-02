@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="output.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <title>Document</title>
+  <style>
+    *{
+      font-family: Roboto;
+      color: white;
+    }
+  </style>
+</head>
+<body class="bg-black flex md:flex-row flex-col-reverse">
+  
+
+  <div class="flex flex-col justify-between border-gray-700 md:border-r-1 border-t-1 md:h-screen fixed md:top-0 left-0 bottom-0 right-0 h-7% md:right-3/4">
+    <div class=" flex md:flex-col flex-row md:items-start items-center justify-between ">
+      <div class="ml-20 hidden md:flex">
+        <img src="Images/x-social-media-white-icon.svg" class="size-7 mt-4" alt="">
+      </div>
+      <div
+        class="flex flex-row items-center justify-center md:ml-16 md:mt-8 rounded-full px-4 py-3 duration-200 ease-in-out hover:bg-gray-900 cursor-pointer">
+        <svg class="size-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+        </svg>
+        <p class="text-xl xmd:flex hidden font-bold ml-4 mt-1">Home</p>
+      </div>
+  
+      <div
+        class="md:flex hidden flex-row items-center justify-center ml-16 mt-4 rounded-full px-4 py-3 duration-200 ease-in-out hover:bg-gray-900 cursor-pointer">
+        <svg class="size-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+          stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+        </svg>
+        </svg>
+        <p class="text-xl xmd:flex hidden font-bold ml-4 mt-1">Profile</p>
+      </div>
+  
+      <div
+        class="bg-button md:flex hidden xmd:px-20 cursor-pointer px-6 hover:bg-sky-600 duration-200 ease-in-out py-3 ml-20 mt-4 font-bold rounded-full text-center">
+        <p>Post</p>
+      </div>
+
+      <svg class="size-7 md:hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+      </svg>
+  
+      <div class="flex md:hidden items-center justify-center bg-gray-500 rounded-full size-7 mr-3">
+        P
+      </div>
+    </div>
+
+    <div class="ml-20  md:flex hidden flex-row items-center mb-8">
+      <div class="xmd:flex hidden items-center justify-center bg-gray-500 rounded-full size-10">
+        P
+      </div>
+      <p class="font-bold items-center ml-3 xmd:flex hidden">Pratiyank</p>
+
+      <svg class="size-6 ml-5 cursor-pointer flex js-logout-button" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+      </svg>
+    </div>
+  </div>
+  <div class="flex flex-col items-center fixed md:left-1/4 right-0 top-0 left-0 md:h-full h-93% bg-black overflow-y-auto js-pc-feed">
+
+  </div>
+
+  <script src="scripts/home.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+feedHTML += `
+      <div class="w-full border-b-1 md:mt-0 -mt-20 border-gray-600 flex items-center justify-center">
+        <div class="font-sans px-6 py-4 max-w-md mt-10">
+          <div class="flex items-center">
+            <div class="flex items-center justify-center bg-gray-500 rounded-full size-8 md:mt-6 mt-12">
+              ${userName[0].toUpperCase()}
+            </div>
+            <div class="flex flex-col ml-4">
+              <a class="font-bold text-black" href="#">
+                Something other Morgan
+              </a>
+              <span class="text-grey">${userName}</span>
+            </div>
+            <svg class="mt-4 ml-32 size-6 cursor-pointer " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+            </svg>
+          </div>
+          <div class="mt-3 mb-1 leading-normal text-lg">
+            ${post.text}
+          </div>
+          <div class="text-grey mb-3 text-sm">
+            ${convertTimestamp(post.createdAt)}
+          </div>
+          <div class="flex text-grey">
+            <div class="flex items-center mr-4">
+              <svg class="mr-2" width="24" height="24" viewBox="0 0 24 24">
+                <path class="fill-current" d="M14.046 2.242l-4.148-.01h-.002c-4.374 0-7.8 3.427-7.8 7.802 0 4.098 3.186 7.206 7.465 7.37v3.828c0 .108.045.286.12.403.143.225.385.347.633.347.138 0 .277-.038.402-.118.264-.168 6.473-4.14 8.088-5.506 1.902-1.61 3.04-3.97 3.043-6.312v-.017c-.006-4.368-3.43-7.788-7.8-7.79zm3.787 12.972c-1.134.96-4.862 3.405-6.772 4.643V16.67c0-.414-.334-.75-.75-.75h-.395c-3.66 0-6.318-2.476-6.318-5.886 0-3.534 2.768-6.302 6.3-6.302l4.147.01h.002c3.532 0 6.3 2.766 6.302 6.296-.003 1.91-.942 3.844-2.514 5.176z"></path>
+              </svg>
+              <span>${post.comments.length}</span>
+            </div>
+            <div class="flex items-center">
+              <svg class="mr-2 js-like-button cursor-pointer" width="24" height="24" viewBox="0 0 24 24">
+                <path class="fill-current" d="M12 21.638h-.014C9.403 21.59 1.95 14.856 1.95 8.478c0-3.064 2.525-5.754 5.403-5.754 2.29 0 3.83 1.58 4.646 2.73.813-1.148 2.353-2.73 4.644-2.73 2.88 0 5.404 2.69 5.404 5.755 0 6.375-7.454 13.11-10.037 13.156H12zM7.354 4.225c-2.08 0-3.903 1.988-3.903 4.255 0 5.74 7.035 11.596 8.55 11.658 1.52-.062 8.55-5.917 8.55-11.658 0-2.267-1.822-4.255-3.902-4.255-2.528 0-3.94 2.936-3.952 2.965-.23.562-1.156.562-1.387 0-.015-.03-1.426-2.965-3.955-2.965z"></path>
+              </svg>
+              <span>${post.likes.length}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+
+
+generateFeedHTML(feed,  `
+    <p class=" text-xl font-bold mt-3">Posts</p>
+
+    <div class="w-full py-6 border-b-1 border-t-1 border-gray-600 flex items-center justify-center">
+      <div class="w-4/6 flex flex-col items-center justify-center">
+        <div class="flex flex-row items-center w-full ">
+          <div class="flex items-center justify-center bg-gray-500 rounded-full size-10">
+            P
+          </div>
+          <input type="text" class="w-full h-20 bg-transparent outline-none text-xl pl-5" placeholder="What's Happening?!">
+        </div>
+
+        <div class="w-full">
+          <button class="px-4 font-bold py-2 rounded-full bg-button">Post</button>
+        </div>
+      </div>
+    </div>
+  `, '.js-pc-feed');
+
+  generateFeedHTML(feed, `
+    <div class="p-4 rounded-full fixed right-4 bottom-24 flex items-center justify-center bg-button">
+      <img src="Images/res-tweet.svg" alt="">
+    </div>
+
+    <img src="Images/x-social-media-white-icon.svg" class="size-8 mt-4" alt="">
+    `, '.js-main-content'
+  )
+
+
+  <div class="fixed w-full h-7% bottom-0 md:hidden  border-gray-700 border-t-1 left-0 right-0 flex flex-row items-center justify-between">
+    <svg class="size-7 ml-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+      stroke="currentColor" class="size-6">
+      <path stroke-linecap="round" stroke-linejoin="round"
+        d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+    </svg>
+
+    <svg class="size-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+    </svg>
+
+    <div class="flex items-center justify-center bg-gray-500 rounded-full size-7 mr-3">
+      P
+    </div>
+  </div>
