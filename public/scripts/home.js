@@ -4,6 +4,21 @@ let token;
 document.addEventListener('DOMContentLoaded', async () => {
   token = JSON.parse(localStorage.getItem('token'))
 
+  const userReq = await fetch('http://localhost:3000/users/me', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  })
+
+  const user = await userReq.json()
+
+  document.querySelector('.js-user-icon').innerHTML = user.name[0].toUpperCase();
+  document.querySelector('.js-user-icon1').innerHTML = user.name[0].toUpperCase();
+  document.querySelector('.js-user-name').innerHTML = user.name;
+
+
   const feedRequest = await fetch('http://localhost:3000/feed', {
     method: 'GET',
     headers: {
@@ -13,7 +28,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   })
 
   const feed = await feedRequest.json()
-  console.log(feed)
+
+
 
   async function generatePcFeed() {
     let feedHtml  = `
@@ -25,16 +41,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div class="flex items-center justify-center bg-gray-500 rounded-full size-10">
               P
             </div>
-            <input type="text" class="w-full h-20 bg-transparent outline-none text-xl pl-5" placeholder="What's Happening?!">
+            <input type="text" class="w-full h-20 bg-transparent outline-none text-xl pl-5 js-post-input" placeholder="What's Happening?!">
           </div>
 
           <div class="w-full">
-            <button class="px-4 font-bold py-2 rounded-full bg-button">Post</button>
+            <button class="px-4 font-bold py-2 rounded-full bg-button js-post-button">Post</button>
           </div>
         </div>
       </div>
 
-      <div class="p-4 md:hidden rounded-full fixed right-4 bottom-24 flex items-center justify-center bg-button">
+      <div class="p-4 md:hidden rounded-full fixed right-4 bottom-24 flex items-center justify-center js-mob-tweet-button bg-button">
         <img src="Images/res-tweet.svg" alt="">
       </div>
 
@@ -45,6 +61,13 @@ document.addEventListener('DOMContentLoaded', async () => {
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
         </svg>
         <p class="ml-3">You have already liked the post!</p>      
+      </div>
+
+      <div class="w-72 md:h-16 h-14 bg-red-500 shadow-red-400 shadow-sm fixed right-16 top-10 flex flex-row items-center rounded-full js-post-error-message hidden">
+        <svg class="ml-4 size-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+        </svg>
+        <p class="ml-3">Can't upload empty text!</p>      
       </div>
     `;
 
@@ -111,7 +134,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           const response = await request.json()
   
           if (request.status === 200) {
-            console.log(response)
             const updatedLikes = response.likes.length;
   
             // Find the like count span and update its value
@@ -134,7 +156,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       button.addEventListener('click', async () => {
         const id = button.dataset.id;
         const user = await getUserProfile();
-        console.log(user)
         document.querySelector('.js-pc-feed').innerHTML = `
           <div class="w-3/4 h-3/4 mt-20 rounded-md flex flex-col items-start justify-start shadow-md bg-back p-4">
             <svg class="fixed size-6 right-3 top-2 cursor-pointer js-close-button" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -241,7 +262,6 @@ document.addEventListener('DOMContentLoaded', async () => {
               const response = await request.json()
   
               if (request.status === 200) {
-                console.log(response)
                 window.location.reload()
               } else {
                 document.querySelector('.js-error-message').classList.remove('hidden')
@@ -255,7 +275,80 @@ document.addEventListener('DOMContentLoaded', async () => {
           })
         })
       });
-    });    
+    });
+    
+    document.querySelector('.js-post-button').addEventListener('click', async () => {
+      const text = document.querySelector('.js-post-input').value
+
+      const request = await fetch('http://localhost:3000/posts', {
+        method:'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          text
+        })
+      })
+
+      const response = await request.json()
+
+      if (request.status === 200) {
+        window.location.reload()
+      } else {
+        document.querySelector('.js-post-error-message').classList.remove('hidden')
+        setTimeout(() => {
+          document.querySelector('.js-post-error-message').classList.add('hidden')
+        }, 2000);
+      }
+    })
+
+    document.querySelector('.js-mob-tweet-button').addEventListener('click', () => {
+      document.querySelector('.js-pc-feed').innerHTML = `
+        <div class="w-3/4 h-3/4 mt-20 rounded-md flex flex-col items-start justify-start shadow-md bg-back p-4">
+          <textarea name="text" class="w-full h-4/5 bg-transparent text-xl border-1 border-gray-300 pl-3 outline-none js-mob-post-input" placeholder="Enter your text here" id=""></textarea>
+          <button class="px-4 py-2 bg-button rounded-full mt-8 js-mob-post-button">
+            Post
+          </button>
+
+          <svg class="fixed size-6 right-3 top-2 cursor-pointer js-post-close-button" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </div>
+      `
+
+      document.querySelector('.js-mob-post-button').addEventListener('click', async () => {
+        const text = document.querySelector('.js-mob-post-input').value
+  
+        const request = await fetch('http://localhost:3000/posts', {
+          method:'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            text
+          })
+        })
+  
+        const response = await request.json()
+  
+        if (request.status === 200) {
+          window.location.reload()
+        } else {
+          document.querySelector('.js-post-error-message').classList.remove('hidden')
+          setTimeout(() => {
+            document.querySelector('.js-post-error-message').classList.add('hidden')
+          }, 2000);
+        }
+      })
+
+      document.querySelector('.js-post-close-button').addEventListener('click', () => {
+        generatePcFeed()
+        document.querySelector('.js-pc-feed').innerHTML = feedHtml;
+      });
+    })
+    
   }
 
   generatePcFeed()
@@ -272,7 +365,28 @@ document.addEventListener('DOMContentLoaded', async () => {
       })
 
       const response = await request.json()
-      console.log(response)
+
+      if (request.status >= 400) {
+        console.log('An error occured')
+      } else {
+        window.location.href = '/login' 
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  })
+
+  document.querySelector('.js-mob-logout-button').addEventListener('click', async () => {
+    try {
+      const request = await fetch('http://localhost:3000/users/logout', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'text/plain'
+        }
+      })
+
+      const response = await request.json()
 
       if (request.status >= 400) {
         console.log('An error occured')
