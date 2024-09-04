@@ -5,7 +5,8 @@ module.exports = {
     extend: {
       backgroundColor: {
         button: '#1D9BF0',
-        back: '#242D34'
+        back: '#242D34',
+        coverArt: '#333639'
       },
       fontSize: {
         xm: '15px'
@@ -34,6 +35,9 @@ module.exports = {
       width: {
         '100': '400px',
         '108': '432px'
+      },
+      textColor: {
+        'primary': '#71767B'
       }
     }
   },

@@ -70,7 +70,7 @@ router.delete('/posts/:id', auth, async (req, res) => {
     if (!post) {
       throw new Error("Can not find post");
     }
-    res.send('Post deleted') 
+    res.send({message: 'Post deleted'}) 
   } catch (error) {
     res.status(400).send(error)
   }

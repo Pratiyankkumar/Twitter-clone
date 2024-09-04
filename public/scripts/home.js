@@ -400,6 +400,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 })
 
+document.querySelector('.js-profile-button').addEventListener('click', () => {
+  window.location = '/profile'
+})
+
+document.querySelector('.js-mob-profile-button').addEventListener('click', () => {
+  window.location = '/profile'
+})
+
+
 async function getUserProfile() {
   const url = 'http://localhost:3000/users/me'; // Replace with your actual server URL
 
