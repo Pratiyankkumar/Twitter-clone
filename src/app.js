@@ -1,4 +1,5 @@
 const express = require('express')
+require('dotenv').config('./config/dev.env')
 require('./db/mongoose.js')
 const userRouter = require('./routers/user.js')
 const postRouter = require('./routers/post.js')
@@ -37,7 +38,8 @@ app.get('/user', (req, res) => {
   res.sendFile('user.html', { root: publicDirectoryPath })
 })
 
+const port = process.env.PORT
 
-app.listen(3000, () => {
-  console.log('Server is up on port 3000')
+app.listen(port, () => {
+  console.log('Server is up on port ' + port)
 })

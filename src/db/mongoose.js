@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+require('../../config/dev.env')
+require('dotenv').config({path: './config/dev.env'})
 
-mongoose.connect('mongodb://127.0.0.1:27017/blog-api')
+mongoose.connect(process.env.MONGODB_URL)
 

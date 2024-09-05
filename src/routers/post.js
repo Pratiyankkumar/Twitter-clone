@@ -26,6 +26,15 @@ router.get('/posts', auth, async (req, res) => {
   }
 })
 
+router.get('/feed', auth, async (req, res) => {
+  try {
+    const feed = await Post.find({  }).sort({ createdAt: -1 });
+    res.send(feed) 
+  } catch (error) {
+    res.status(500).send(error)
+  }
+})
+
 router.get('/posts/:id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id)

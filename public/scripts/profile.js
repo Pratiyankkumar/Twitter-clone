@@ -64,6 +64,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     
   `
 
+  document.querySelector('.js-user-icon').innerHTML = userName[0].toUpperCase()
+  document.querySelector('.js-user-icon1').innerHTML = userName[0].toUpperCase()
+  document.querySelector('.js-user-name').innerHTML = userName
+
   for (const post of posts) {
     const response = await getUserProfile()
     const userName = await response.userName;
