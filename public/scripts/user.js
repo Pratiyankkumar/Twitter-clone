@@ -4,7 +4,7 @@ let token;
 document.addEventListener('DOMContentLoaded', async () => {
   token = JSON.parse(localStorage.getItem('token'))
 
-  const userRequest = await fetch('http://localhost:3000/users/me', {
+  const userRequest = await fetch('https://twitter-clone-tsn3.onrender.com/users/me', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const password = document.getElementById('js-password-input').value || user.password;
 
     try {
-      const request = await fetch('http://localhost:3000/users/me', {
+      const request = await fetch('https://twitter-clone-tsn3.onrender.com/users/me', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

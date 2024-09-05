@@ -4,7 +4,7 @@ let token;
 document.addEventListener('DOMContentLoaded', async () => {
   token = JSON.parse(localStorage.getItem('token'))
 
-  const userReq = await fetch('http://localhost:3000/users/me', {
+  const userReq = await fetch('https://twitter-clone-tsn3.onrender.com/users/me', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.querySelector('.js-user-name').innerHTML = user.name;
 
 
-  const feedRequest = await fetch('http://localhost:3000/feed', {
+  const feedRequest = await fetch('https://twitter-clone-tsn3.onrender.com/feed', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
           const id = likeButton.dataset.id
         
-          const request = await fetch(`http://localhost:3000/posts/${id}/like`, {
+          const request = await fetch(`https://twitter-clone-tsn3.onrender.com/posts/${id}/like`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           </div>
         `;
 
-        const postRequest = await fetch(`http://localhost:3000/posts/${id}`, {
+        const postRequest = await fetch(`https://twitter-clone-tsn3.onrender.com/posts/${id}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector('.js-comment-post-button').addEventListener('click', async () => {
           let comment = document.querySelector('.js-comment-input').value
           
-          const request = await fetch(`http://localhost:3000/posts/${id}/comment`, {
+          const request = await fetch(`https://twitter-clone-tsn3.onrender.com/posts/${id}/comment`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             try {
               const commentId = deleteButton.dataset.commentId
             
-              const request = await fetch(`http://localhost:3000/posts/${id}/comment/${commentId}`, {
+              const request = await fetch(`https://twitter-clone-tsn3.onrender.com/posts/${id}/comment/${commentId}`, {
                 method: "DELETE",
                 headers: {
                   'Authorization': `Bearer ${token}`,
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelector('.js-post-button').addEventListener('click', async () => {
       const text = document.querySelector('.js-post-input').value
 
-      const request = await fetch('http://localhost:3000/posts', {
+      const request = await fetch('https://twitter-clone-tsn3.onrender.com/posts', {
         method:'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       document.querySelector('.js-mob-post-button').addEventListener('click', async () => {
         const text = document.querySelector('.js-mob-post-input').value
   
-        const request = await fetch('http://localhost:3000/posts', {
+        const request = await fetch('https://twitter-clone-tsn3.onrender.com/posts', {
           method:'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.querySelector('.js-logout-button').addEventListener('click', async () => {
     try {
-      const request = await fetch('http://localhost:3000/users/logout', {
+      const request = await fetch('https://twitter-clone-tsn3.onrender.com/users/logout', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -378,7 +378,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.querySelector('.js-mob-logout-button').addEventListener('click', async () => {
     try {
-      const request = await fetch('http://localhost:3000/users/logout', {
+      const request = await fetch('https://twitter-clone-tsn3.onrender.com/users/logout', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -410,7 +410,7 @@ document.querySelector('.js-mob-profile-button').addEventListener('click', () =>
 
 
 async function getUserProfile() {
-  const url = 'http://localhost:3000/users/me'; // Replace with your actual server URL
+  const url = 'https://twitter-clone-tsn3.onrender.com/users/me'; // Replace with your actual server URL
 
   try {
     const response = await fetch(url, {
@@ -433,7 +433,7 @@ async function getUserProfile() {
 }
 
 async function findUser(userId) {
-  const request = await fetch(`http://localhost:3000/users/${userId}`, {
+  const request = await fetch(`https://twitter-clone-tsn3.onrender.com/users/${userId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'

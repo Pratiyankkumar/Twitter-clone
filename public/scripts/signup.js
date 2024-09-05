@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const password = document.getElementById('js-password-input').value;
 
     try {
-      const request = await fetch('http://localhost:3000/users', {
+      const request = await fetch('https://twitter-clone-tsn3.onrender.com/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
