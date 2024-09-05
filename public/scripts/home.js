@@ -37,14 +37,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       <div class="w-full mt-8 py-6 border-b-1 border-t-1 border-gray-600 md:flex hidden items-center justify-center ">
         <div class="w-4/6 flex flex-col items-center justify-center">
-          <div class="flex flex-row items-center w-full ">
+          <div class="flex flex-row items-center w-2/4 ">
             <div class="flex items-center justify-center bg-gray-500 rounded-full size-10">
               P
             </div>
             <input type="text" class="w-full h-20 bg-transparent outline-none text-xl pl-5 js-post-input" placeholder="What's Happening?!">
           </div>
 
-          <div class="w-full">
+          <div class="w-2/4">
             <button class="px-4 font-bold py-2 rounded-full bg-button js-post-button">Post</button>
           </div>
         </div>
@@ -77,11 +77,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         <div class="md:w-108 w-100 border-b-1 md:mt-0 border-gray-600 flex items-center justify-center mt-8">
           <div class="font-sans px-10 py-4 w-full mt-0">
             <div class="flex items-center">
-              <div class="flex items-center justify-center bg-gray-500 rounded-full size-8">
+              <div class="flex items-center justify-center bg-gray-500 rounded-full py-3 size-8">
                 ${userName[0].toUpperCase()}
               </div>
               <div class="flex flex-col ml-4">
-                
                 <span class="text-grey">${userName}</span>
               </div>
               <svg class=" ml-40 size-6 cursor-pointer " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
