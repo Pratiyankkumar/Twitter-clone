@@ -25,15 +25,15 @@ module.exports = {
         '3xl': '1920px',  // Custom screen size for even larger screens
       },
       height:{
-        '93%': '93vh',
-        '7%': '7vh',
+        '90%': '90vh',
+        '10%': '10vh',
         '108': '432px'
       },
       margin: {
         '84': '340px'
       },
       width: {
-        '100': '400px',
+        '100': '360px',
         '108': '432px'
       },
       textColor: {

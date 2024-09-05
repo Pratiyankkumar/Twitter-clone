@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     for (const post of feed) {
       const userName = await findUser(post.owner)
       feedHtml +=  `
-        <div class="md:w-108 w-100 border-b-1 md:mt-0  border-gray-600 flex items-center justify-center mt-8">
+        <div class="md:w-108 w-100 border-b-1 md:mt-0 border-gray-600 flex items-center justify-center mt-8">
           <div class="font-sans px-10 py-4 w-full mt-0">
             <div class="flex items-center">
               <div class="flex items-center justify-center bg-gray-500 rounded-full size-8">

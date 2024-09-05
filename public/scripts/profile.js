@@ -37,8 +37,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           <a href="/user">
             <button class="px-4 py-2 border-1 border-gray-300 rounded-full bg-transparent absolute md:right-10 right-5 mt-2 hover:bg-gray-500 duration-200 ease-in-out">Edit Profile</button>
           </a>
-
-          <button class="px-4 py-2 border-1 js-delete-user-button border-gray-300 rounded-full bg-transparent absolute md:right-40 right-36 mt-2 hover:bg-gray-500 duration-200 ease-in-out">Delete Profile</button>
         </div>
       </div>
       <p class="text-2xl font-bold md:mt-24 mt-20 md:ml-16 ml-8">${userName}</p>
@@ -50,6 +48,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         </svg>
         <p class="ml-3 font-light text-primary">Joined: ${convertTimestamp(createdAt)}</p>
       </div>
+
+      <button class="w-32 py-2 border-1 md:ml-16 ml-8 mt-4 js-delete-user-button border-gray-300 rounded-full bg-transparent hover:bg-gray-500 duration-200 ease-in-out">Delete Profile</button>
+
       <div class="border-b-1 border-gray-600 w-full mt-8"></div>
     </div>
 
