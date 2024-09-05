@@ -23,7 +23,8 @@ const userSchema = new mongoose.Schema({
     }
   },
   age: {
-    type: Number
+    type: Number,
+    default: 0
   },
   password: {
     type: String,
@@ -37,6 +38,8 @@ const userSchema = new mongoose.Schema({
       required: true
     }
   }]
+}, {
+  timestamps: true
 })
 
 userSchema.methods.generateAuthToken = async function () {

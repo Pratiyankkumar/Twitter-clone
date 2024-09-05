@@ -33,6 +33,10 @@ app.get('/profile', (req, res) => {
   res.sendFile('profile.html', { root: publicDirectoryPath })
 })
 
+app.get('/user', (req, res) => {
+  res.sendFile('user.html', { root: publicDirectoryPath })
+})
+
 
 app.listen(3000, () => {
   console.log('Server is up on port 3000')

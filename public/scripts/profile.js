@@ -17,6 +17,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   })
 
   const posts = await request.json()
+  const response = await getUserProfile()
+  const userName = await response.userName;
+  const createdAt = response.createdAt;
+  const age = response.age
+  const email = response.email
 
   let feedHTML = `
     <div class="w-full fixed top-0 md:left-1/4 left-0 right-0 h-16 backdrop-blur-sm bg-black/30">
@@ -26,16 +31,24 @@ document.addEventListener('DOMContentLoaded', async () => {
       <div class="bg-coverArt w-full md:h-64 h-32"></div>
       <div class="flex flex-row w-full relative">
         <div class="flex absolute md:left-10 left-5 md:-top-20 -top-16 text-6xl js-user-icon1 items-center justify-center bg-gray-500 rounded-full md:size-40 size-32 border-black border-4">
-          P
+          ${userName[0].toUpperCase()}
         </div>
-        <button class="px-4 py-2 border-1 border-gray-300 rounded-full bg-transparent absolute right-10 mt-2 ">Edit Profile</button>
+        <div>
+          <a href="/user">
+            <button class="px-4 py-2 border-1 border-gray-300 rounded-full bg-transparent absolute md:right-10 right-5 mt-2 hover:bg-gray-500 duration-200 ease-in-out">Edit Profile</button>
+          </a>
+
+          <button class="px-4 py-2 border-1 js-delete-user-button border-gray-300 rounded-full bg-transparent absolute md:right-40 right-36 mt-2 hover:bg-gray-500 duration-200 ease-in-out">Delete Profile</button>
+        </div>
       </div>
-      <p class="text-2xl font-bold md:mt-24 mt-20 md:ml-16 ml-8">Pratiyank</p>
+      <p class="text-2xl font-bold md:mt-24 mt-20 md:ml-16 ml-8">${userName}</p>
+      <p class="md:ml-16 ml-8 mt-4 text-gray-600">Age: ${age}</p>
+      <p class="md:ml-16 ml-8 mt-4 text-gray-600">Email: ${email}</p>
       <div class="flex flex-row md:ml-16 ml-8 mt-4 items-center">
         <svg class="size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 2.994v2.25m10.5-2.25v2.25m-14.252 13.5V7.491a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v11.251m-18 0a2.25 2.25 0 0 0 2.25 2.25h13.5a2.25 2.25 0 0 0 2.25-2.25m-18 0v-7.5a2.25 2.25 0 0 1 2.25-2.25h13.5a2.25 2.25 0 0 1 2.25 2.25v7.5m-6.75-6h2.25m-9 2.25h4.5m.002-2.25h.005v.006H12v-.006Zm-.001 4.5h.006v.006h-.006v-.005Zm-2.25.001h.005v.006H9.75v-.006Zm-2.25 0h.005v.005h-.006v-.005Zm6.75-2.247h.005v.005h-.005v-.005Zm0 2.247h.006v.006h-.006v-.006Zm2.25-2.248h.006V15H16.5v-.005Z" />
         </svg>
-        <p class="ml-3 font-light text-primary">Joined January 2024</p>
+        <p class="ml-3 font-light text-primary">Joined: ${convertTimestamp(createdAt)}</p>
       </div>
       <div class="border-b-1 border-gray-600 w-full mt-8"></div>
     </div>
@@ -52,7 +65,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   `
 
   for (const post of posts) {
-    const userName = await getUserProfile()
+    const response = await getUserProfile()
+    const userName = await response.userName;
     feedHTML += `
       
       <div class="font-sans px-5 py-4 md:w-108 w-96 mt-10">
@@ -119,6 +133,20 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.log(response)
       window.location.reload()
     })
+  })
+
+  document.querySelector('.js-delete-user-button').addEventListener('click', async () => {
+    const request = await fetch('http://localhost:3000/users/me', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
+
+    const response = await request.json()
+
+    console.log(response)
   })
 
   document.querySelectorAll('.js-update-post').forEach((updateButton) => {
@@ -225,7 +253,12 @@ async function getUserProfile() {
     }
 
     const userData = await response.json();
-    return userData['name'] // Handle the user data as needed
+    return {
+      userName: userData['name'],
+      createdAt: userData['createdAt'],
+      age: userData['age'],
+      email: userData['email']
+    } // Handle the user data as needed
   } catch (error) {
     console.error('Error fetching user profile:', error);
   }
