@@ -1,5 +1,10 @@
 # Twitter Clone
 
+[![Screenshot-2024-09-06-210044.png](https://i.postimg.cc/26t4nMJg/Screenshot-2024-09-06-210044.png)](https://postimg.cc/tZhZjS9z)
+[![Screenshot-2024-09-06-210114.png](https://i.postimg.cc/jdyR0Ns7/Screenshot-2024-09-06-210114.png)](https://postimg.cc/VdsxXJ0f)
+[![Screenshot-2024-09-06-210134.png](https://i.postimg.cc/Hsb8ZVRS/Screenshot-2024-09-06-210134.png)](https://postimg.cc/7fYLbYx7)
+
+
 This is a simplified version of Twitter built using the MongoDB, Express.js and Node.js. The goal of this project is to replicate key features of Twitter, including posting tweets, liking tweets, and managing profiles.
 
 ## Features
